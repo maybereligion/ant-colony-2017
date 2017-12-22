@@ -38,10 +38,18 @@ namespace SOFT152Steering
         // A bitmap image used for double buffering
         private Bitmap backgroundImage;
 
+        private List<NestObject> nestList;
+        private List<AntAgent> antList;
+        private List<FoodObject> foodList;
 
         public AntFoodForm()
         {        
             InitializeComponent();
+
+            nestList = new List<NestObject>();
+            antList = new List<AntAgent>();
+            foodList = new List<FoodObject>();
+
 
             CreateBackgroundImage();
 
@@ -74,10 +82,11 @@ namespace SOFT152Steering
             //create a 2nd object at an arbitrary position 
             foodObject = new SOFT152Vector(50, 50);
 
+            
             //create a nest object at an arbitrary position
             nest1 = new NestObject(new SOFT152Vector(50, 100));
 
-            //create a nest object at an arbitrary position
+            //create a food object at an arbitrary position
             food1 = new FoodObject(new SOFT152Vector(100, 50), 100);
         }
 
@@ -230,15 +239,15 @@ namespace SOFT152Steering
 
                 // now draw the 2nd stationary object
                 // change colour of brush
-                solidBrush = new SolidBrush(Color.Brown);
-                g.FillRectangle(solidBrush, (float)foodObject.X, (float)foodObject.Y, 20, 20);
+               solidBrush = new SolidBrush(Color.Brown);
+               g.FillRectangle(solidBrush, (float)foodObject.X, (float)foodObject.Y, 20, 20);
 
                 // get the nest position
                 nestXPosition = (float)nest1.NestPosition.X;
                 nestYPosition = (float)nest1.NestPosition.Y;
 
                 // create a brush
-                solidBrush = new SolidBrush(Color.Red);
+                solidBrush = new SolidBrush(Color.Olive);
 
                 // draw the nest
                 g.FillRectangle(solidBrush, nestXPosition, nestYPosition, nestSize, nestSize);
@@ -354,7 +363,7 @@ namespace SOFT152Steering
                 nestYPosition = (float)nest1.NestPosition.Y;
 
                 // create a brush
-                solidBrush = new SolidBrush(Color.Red);
+                solidBrush = new SolidBrush(Color.Olive);
 
                 // draw the nest
                 backgroundGraphics.FillRectangle(solidBrush, nestXPosition, nestYPosition, nestSize, nestSize);
